@@ -153,7 +153,7 @@ def init(dimx, dimy, display, size):
               0, 0, 0, 0, 0, 0, 0]])
 
     if choice == 4:
-        pattern = np.zeros((dimy-3, dimx-3))
+        pattern = np.zeros((dimy - 3, dimx - 3))
         condition = True
         display.fill(col_background)
         text = font.render('Start', True, col_alive)
@@ -164,21 +164,15 @@ def init(dimx, dimy, display, size):
                 if ev.type == pygame.QUIT:
                     pygame.quit()
                 if ev.type == pygame.MOUSEBUTTONDOWN:
-                    if 80 <= mouse[0] <= 120 and 30 <= mouse[1] <= 62:
+                    if 80 <= mouse[0] <= 160 and 30 <= mouse[1] <= 62:
                         condition = False
-                    elif 0 <= mouse[0] <= (dimx-3) * size and 0 <= mouse[1] <= (dimy-3) * size:
-                        if pattern[int(mouse[1] / (size + 1)), int(mouse[0] / (size + 1))] == 0:
-                            pattern[int(mouse[1] / size - 1), int(mouse[0] / size - 1)] = 1
-            rx = 1
-            for r in pattern:
-                cx = 1
-                for c in r:
-                    if c == 1:
-                        pygame.draw.rect(display, col_alive, (cx * size, rx * size, size-1, size-1))
-                    else:
-                        pygame.draw.rect(display, col_background, (cx * size, rx * size, size-1, size-1))
-                    cx += 1
-                rx += 1
+                    elif 0 <= mouse[0] <= (dimx - 3) * size and 0 <= mouse[1] <= (dimy - 3) * size:
+                        pattern[int(mouse[1] / size), int(mouse[0] / size)] = 1 - pattern[
+                            int(mouse[1] / size), int(mouse[0] / size)]
+
+            for r, c in np.ndindex(pattern.shape[0], pattern.shape[1]):
+                col = col_alive if pattern[r, c] == 1 else col_background
+                pygame.draw.rect(display, col, (c * size, r * size, size - 1, size - 1))
             display.blit(text, (80, 30))
             pygame.display.update()
 
