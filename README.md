@@ -13,6 +13,11 @@ In the top left there is a start button, and wouldn't you know it, once it's pre
 the rules are typical. Alive cell needs 2-3 neighboring living cells to survive, dead cells come to life at 3 living neighboring cells.
 
 
-The clicking is still very janky. There is also currently no option to turn off a cell in the customize window.
 
-as of 19/05/2022: toggling cells in custom mode significantly improved, can also now toggle living cells to make them dead.
+
+TODO and changelog: 
+
+The clicking is still very janky. There is also currently no option to turn off a cell in the customize window. *1
+
+*1: as of 19/05/2022: toggling cells in custom mode significantly improved, can also now toggle living cells to make them dead.
+
